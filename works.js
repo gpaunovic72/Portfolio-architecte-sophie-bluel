@@ -25,3 +25,44 @@ function genererProjets(projets) {
   }
 }
 genererProjets(projets);
+
+//gestion des boutons
+const boutonTous = document.querySelector(".btn-tous");
+
+boutonTous.addEventListener("click", () => {
+  const btnTous = projets.filter((projet) => {
+    return projet.category;
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(btnTous);
+});
+
+const boutonObjets = document.querySelector(".btn-objets");
+boutonObjets.addEventListener("click", () => {
+  // Filtrer les projets ayant la catégorie "Objets"
+  const projetsObjets = projets.filter((projet) => projet.category.id === 1);
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(projetsObjets);
+});
+
+const boutonAppartement = document.querySelector(".btn-appartements");
+boutonAppartement.addEventListener("click", () => {
+  // Filtrer les projets ayant la catégorie "Appartements"
+  const projetsAppartements = projets.filter(
+    (projet) => projet.category.id === 2
+  );
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(projetsAppartements);
+});
+
+const boutonHotelsRestaurents = document.querySelector(
+  ".btn-hotelsRestaurants"
+);
+boutonHotelsRestaurents.addEventListener("click", () => {
+  // Filtrer les projets ayant la catégorie "Hotels & Restaurents"
+  const projetsHotelsRestaurents = projets.filter(
+    (projet) => projet.category.id === 3
+  );
+  document.querySelector(".gallery").innerHTML = "";
+  genererProjets(projetsHotelsRestaurents);
+});
