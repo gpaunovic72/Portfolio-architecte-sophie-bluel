@@ -7,9 +7,18 @@ function validerFomulaireLogin() {
       email: Event.target.querySelector("[name=email]").value,
       password: Event.target.querySelector("[name=password]").value,
     };
+    const errorMessage = document.getElementById("errorMessage");
 
     // Création de la charge utile au format JSON
     const chargeUtile = JSON.stringify(login);
+
+    // Valide l'email avant d'envoyer les données à l'API
+    try {
+      validerEmail(login.email);
+    } catch (error) {
+      errorMessage.textContent = error.message;
+      return;
+    }
 
     // Appel de la fonction fetch avec toutes les informations nécessaires
     const reponse = await fetch("http://localhost:5678/api/users/login", {
@@ -17,7 +26,6 @@ function validerFomulaireLogin() {
       headers: { "Content-Type": "application/json" },
       body: chargeUtile,
     });
-    const errorMessage = document.getElementById("errorMessage");
     // Traitement de la réponse du serveur
     const data = await reponse.json();
     // Stockage des informations dans localStorage après une connexion réussie
