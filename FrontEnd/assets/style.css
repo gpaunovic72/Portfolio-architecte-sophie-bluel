@@ -1,8 +1,9 @@
+@import "./modules/headerEdition.css";
+@import "./modules/portfolioModifier.css";
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -140,18 +141,18 @@ main {
   max-width: 1140px;
   margin: auto;
 }
-header {
+.header {
   display: flex;
   justify-content: space-between;
   margin: 50px 150px 50px 150px;
 }
 
-header a {
+.header a {
   text-decoration: none;
   color: #000000;
 }
 
-header img {
+.header img {
   display: flex;
   align-items: center;
   width: 22px;
@@ -209,7 +210,6 @@ a:hover {
 }
 #introduction img {
   display: block;
-  margin: auto;
   width: 80%;
 }
 
@@ -225,7 +225,7 @@ a:hover {
 }
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 51px;
 }
 .gallery {
   width: 100%;
@@ -238,27 +238,26 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
-.menu-catégorie {
-  display: flex;
+.menu-categorie {
   gap: 10px;
-  margin-bottom: 49px;
-  width: 585px;
+  margin-bottom: 50px;
+  width: 51%;
+  justify-content: space-between;
   white-space: nowrap;
 }
 
-.menu-catégorie button {
+.menu-categorie button {
   color: #1d6154;
   background-color: #fffef8;
   border-radius: 60px;
   border: 1px solid #1d6154;
   height: 37px;
-  width: 100%;
   font-size: 16px;
   font-family: "Syne";
+  width: 100%;
 }
-.menu-catégorie button:hover {
+.menu-categorie button:hover {
   color: #ffffff;
   background-color: #1d6154;
 }

@@ -10,21 +10,42 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <script type="module" src="/works.js"></script>
+    <script type="module" src="/works.js" defer></script>
   </head>
   <body>
     <header>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-      <nav>
+      <nav class="nav-edition" aria-hidden="true" style="display: none">
         <ul>
-          <li class="projets"><a href="./index.html">projets</a></li>
-          <li class="constact">contact</li>
-          <li class="login"><a href="./login.html">login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li>
+            <a href="#" class="fa-regular fa-pen-to-square"
+              ><span>Mode édition</span></a
+            >
+          </li>
         </ul>
       </nav>
+      <section class="header">
+        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav class="nav-header">
+          <ul>
+            <li class="projets"><a href="./index.html">projets</a></li>
+            <li class="constact">contact</li>
+            <li class="login"><a href="./login.html">login</a></li>
+            <li class="logout" style="display: none">
+              <a href="./login.html">logout</a>
+            </li>
+            <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          </ul>
+        </nav>
+      </section>
     </header>
     <main>
       <section id="introduction">
@@ -51,8 +72,15 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
-        <nav class="menu-catégorie">
+        <div class="header-portfolio">
+          <h2>Mes Projets</h2>
+          <div class="btn-modifier" aria-hidden="true" style="display: none">
+            <a href="#" class="fa-regular fa-pen-to-square"
+              ><span>modifier</span></a
+            >
+          </div>
+        </div>
+        <nav class="menu-categorie">
           <button class="btn-tous">Tous</button>
           <button class="btn-objets">Objets</button>
           <button class="btn-appartements">Appartements</button>

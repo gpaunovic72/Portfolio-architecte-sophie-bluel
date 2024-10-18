@@ -66,3 +66,44 @@ boutonHotelsRestaurents.addEventListener("click", () => {
   document.querySelector(".gallery").innerHTML = "";
   genererProjets(projetsHotelsRestaurents);
 });
+
+function homePageEdit() {
+  // Vérifier si le token est présent dans le localStorage
+  let token = window.localStorage.getItem("authToken");
+  console.log("Token", token);
+
+  // Sélection des éléments à modifier
+  const boutonLogin = document.querySelector(".login");
+  const boutonLogout = document.querySelector(".logout");
+  const navEdition = document.querySelector(".nav-edition");
+  const boutonModifier = document.querySelector(".btn-modifier");
+  const menuCategorie = document.querySelector(".menu-categorie");
+
+  const loginToken = !!token;
+
+  // Basculer l'affichage en fonction de la présence du token
+  if (boutonLogin) boutonLogin.style.display = loginToken ? "none" : "flex";
+  if (boutonLogout) boutonLogout.style.display = loginToken ? "flex" : "none";
+  if (navEdition) navEdition.style.display = loginToken ? "flex" : "none";
+  if (boutonModifier)
+    boutonModifier.style.display = loginToken ? "flex" : "none";
+  if (menuCategorie) menuCategorie.style.display = loginToken ? "none" : "flex";
+}
+homePageEdit();
+
+function logout() {
+  const boutonLogout = document.querySelector(".logout");
+  boutonLogout.addEventListener("click", () => {
+    // Supprimer le token du localStorage
+    window.localStorage.removeItem("authToken");
+
+    // Appeler homePageEdit pour mettre à jour l'affichage
+    homePageEdit();
+  });
+}
+
+// Appeler la fonction pour initialiser l'affichage
+homePageEdit();
+
+// Initialiser la fonction de logout
+logout();

@@ -28,12 +28,13 @@ function validerFomulaireLogin() {
     });
     // Traitement de la réponse du serveur
     const data = await reponse.json();
+
     // Stockage des informations dans localStorage après une connexion réussie
     if (reponse.ok) {
       window.localStorage.setItem("userEmail", login.email);
       window.localStorage.setItem("authToken", data.token);
 
-      // Redirection vers la page d'accueil si la connexion réussit
+      // Redirection vers la page d'accueil
       window.location.href = "./index.html";
     } else {
       errorMessage.textContent = `Erreur ${reponse.status} : ${data.message}`;
@@ -49,3 +50,22 @@ function validerEmail(email) {
     throw new Error("L'email n'est pas valide.");
   }
 }
+
+/*// Récupérer le token depuis localStorage
+      let token = window.localStorage.getItem("authToken");
+
+      if (token) {
+        // Cacher le bouton "login"
+        const boutonLogin = document.querySelector(".login");
+        console.log("Bouton login trouvé:", boutonLogin);
+        if (boutonLogin) {
+          boutonLogin.style.display = "none"; // Masquer l'élément login
+        }
+
+        // Afficher le bouton "logout"
+        const boutonLogout = document.querySelector(".logout");
+        console.log("Bouton logout trouvé:", boutonLogout);
+        if (boutonLogout) {
+          boutonLogout.style.display = "block"; // Afficher l'élément logout
+        }
+      }*/

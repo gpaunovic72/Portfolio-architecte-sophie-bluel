@@ -1,0 +1,19 @@
+#portfolio .header-portfolio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 31px;
+  width: 51%;
+}
+
+.btn-modifier a {
+  text-decoration: none;
+  color: #000000;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 51px;
+}
+.btn-modifier span {
+  font-size: 14px;
+  font-family: "Work Sans";
+}
