@@ -19,6 +19,7 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <script type="module" src="/modal.js" defer></script>
     <script type="module" src="/works.js" defer></script>
   </head>
   <body>
@@ -74,7 +75,7 @@
       <section id="portfolio">
         <div class="header-portfolio">
           <h2>Mes Projets</h2>
-          <div class="btn-modifier" aria-hidden="true" style="display: none">
+          <div class="btn-modifier" style="display: none">
             <a href="#" class="fa-regular fa-pen-to-square"
               ><span>modifier</span></a
             >
@@ -111,5 +112,101 @@
         </ul>
       </nav>
     </footer>
+    <aside
+      id="modal"
+      class="modalGaleriePhoto"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="title-modal"
+      style="display: none"
+    >
+      <div class="modal-wrapper">
+        <div class="header-modal">
+          <i class="fa-solid fa-xmark fa-2xl"></i>
+          <h2 id="title-modal">
+            Galerie photo </i>
+          </h2>
+        </div>
+        <div class="modal-gallery">
+          <!-- Récupération des travaux via l'API -->
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/appartement-paris-v.png"
+              alt="Appartement Paris V"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/restaurant-sushisen-londres.png"
+              alt="Restaurant Sushisen - Londres"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/la-balisiere.png"
+              alt="Villa “La Balisiere” - Port Louis"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/structures-thermopolis.png"
+              alt="Structures Thermopolis"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/appartement-paris-x.png"
+              alt="Appartement Paris X"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/le-coteau-cassis.png"
+              alt="Pavillon “Le coteau” - Cassis"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/villa-ferneze.png"
+              alt="Villa Ferneze - Isola d’Elba"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/appartement-paris-xviii.png"
+              alt="Appartement Paris XVIII"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/bar-lullaby-paris.png"
+              alt="Bar “Lullaby” - Paris"
+            />
+          </figure>
+          <figure>
+            <i class="fa-solid fa-trash-can fa-2xs"></i>            
+            <img
+              src="assets/images/hotel-first-arte-new-delhi.png"
+              alt="Hotel First Arte - New Delhi"
+            />
+          </figure>
+        </div>
+        <hr>
+        <button class="ajouter-photo">Ajouter une photo</button>
+      </div>
+    </aside>
   </body>
 </html>

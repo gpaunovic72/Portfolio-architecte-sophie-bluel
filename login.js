@@ -50,22 +50,3 @@ function validerEmail(email) {
     throw new Error("L'email n'est pas valide.");
   }
 }
-
-/*// Récupérer le token depuis localStorage
-      let token = window.localStorage.getItem("authToken");
-
-      if (token) {
-        // Cacher le bouton "login"
-        const boutonLogin = document.querySelector(".login");
-        console.log("Bouton login trouvé:", boutonLogin);
-        if (boutonLogin) {
-          boutonLogin.style.display = "none"; // Masquer l'élément login
-        }
-
-        // Afficher le bouton "logout"
-        const boutonLogout = document.querySelector(".logout");
-        console.log("Bouton logout trouvé:", boutonLogout);
-        if (boutonLogout) {
-          boutonLogout.style.display = "block"; // Afficher l'élément logout
-        }
-      }*/

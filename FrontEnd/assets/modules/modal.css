@@ -1,0 +1,94 @@
+.modalGaleriePhoto {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal-wrapper {
+  width: 630px;
+  height: 688px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.fa-solid.fa-xmark.fa-2xl {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: auto;
+}
+
+.modal-gallery {
+  width: 630px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 9px;
+  grid-row-gap: 29px;
+  padding-left: 115px;
+  padding-right: 95.5px;
+  box-sizing: border-box;
+}
+.modal-wrapper h2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #000000;
+  font-size: 26px;
+  font-family: Work Sans;
+  font-weight: normal;
+  margin-top: 10px;
+  margin-bottom: 49px;
+}
+
+.modal-wrapper img {
+  width: 100%;
+}
+.modal-gallery figure {
+  position: relative;
+}
+
+.modal-gallery i {
+  position: absolute;
+  top: 6px;
+  right: 4.85px;
+  width: 17px;
+  height: 17px;
+  border-radius: 2px;
+  background-color: #000000;
+}
+
+.fa-solid.fa-trash-can.fa-2xs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+hr {
+  width: 420px;
+  margin-top: 67.3px;
+}
+
+.ajouter-photo {
+  font-size: 14px;
+  font-family: "Syne";
+  font-weight: bold;
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  color: #ffffff;
+  background-color: #1d6154;
+  margin-top: 38px;
+  margin-bottom: 51px;
+  margin-left: 205px;
+}

@@ -1,7 +1,7 @@
 const reponse = await fetch("http://localhost:5678/api/works");
 const projets = await reponse.json();
 
-function genererProjets(projets) {
+export function genererProjets(projets) {
   for (let i = 0; i < projets.length; i++) {
     const projet = projets[i];
 
@@ -70,7 +70,6 @@ boutonHotelsRestaurents.addEventListener("click", () => {
 function homePageEdit() {
   // Vérifier si le token est présent dans le localStorage
   let token = window.localStorage.getItem("authToken");
-  console.log("Token", token);
 
   // Sélection des éléments à modifier
   const boutonLogin = document.querySelector(".login");
