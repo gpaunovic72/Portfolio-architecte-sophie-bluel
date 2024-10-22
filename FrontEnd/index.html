@@ -120,92 +120,47 @@
       aria-labelledby="title-modal"
       style="display: none"
     >
-      <div class="modal-wrapper">
+      <div class="modal-wrapper" id="modal-galeriePhoto">
         <div class="header-modal">
-          <i class="fa-solid fa-xmark fa-2xl"></i>
+          <a href="#" class="fa-solid fa-xmark fa-2xl"></a>
           <h2 id="title-modal">
             Galerie photo </i>
           </h2>
         </div>
         <div class="modal-gallery">
           <!-- Récupération des travaux via l'API -->
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/appartement-paris-v.png"
-              alt="Appartement Paris V"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/restaurant-sushisen-londres.png"
-              alt="Restaurant Sushisen - Londres"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/la-balisiere.png"
-              alt="Villa “La Balisiere” - Port Louis"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/structures-thermopolis.png"
-              alt="Structures Thermopolis"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/appartement-paris-x.png"
-              alt="Appartement Paris X"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/le-coteau-cassis.png"
-              alt="Pavillon “Le coteau” - Cassis"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/villa-ferneze.png"
-              alt="Villa Ferneze - Isola d’Elba"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/appartement-paris-xviii.png"
-              alt="Appartement Paris XVIII"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/bar-lullaby-paris.png"
-              alt="Bar “Lullaby” - Paris"
-            />
-          </figure>
-          <figure>
-            <i class="fa-solid fa-trash-can fa-2xs"></i>            
-            <img
-              src="assets/images/hotel-first-arte-new-delhi.png"
-              alt="Hotel First Arte - New Delhi"
-            />
-          </figure>
+          
         </div>
         <hr>
-        <button class="ajouter-photo">Ajouter une photo</button>
+        <div class="btn-modal">
+          <button class="btn-ajouterPhoto">Ajouter une photo</button>
+        </div>
+      </div>
+      <div class="modal-wrapper" id="modal-ajoutPhoto" style="display: none">
+        <div class="header-modal">
+          <a href="#" class="fa-solid fa-xmark fa-2xl"></a>
+          <h2 id="title-modal"> Ajout photo</h2>
+        </div>
+        <div class="modal-ajout">
+          <form action="#" method="post">
+            <div class="load">
+              <i class="fa-regular fa-image"></i>
+              <label type="file" name="file" id="file">+ Ajouter photo</label>
+              <p>jpg, png : 4mo max</p>
+            </div>
+            <div class="load-form">
+              <label for="title">Titre</label>
+              <input type="text" name="title" id="title">
+              <label for="categorie" class="form-categorie">Catégorie</label>
+              <input type="text" name="categorie" id="categorie">
+            </div>
+            <hr>
+            <div class="btn-modal">
+              <button class="btn-valider">Valider</button>
+            </div>
+          </form>
+        </div>  
+        </div>
       </div>
     </aside>
   </body>

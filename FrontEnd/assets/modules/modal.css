@@ -1,6 +1,5 @@
 .modalGaleriePhoto {
   position: fixed;
-  display: flex;
   justify-content: center;
   align-items: center;
   top: 0;
@@ -8,7 +7,6 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 1000;
 }
 
 .modal-wrapper {
@@ -19,6 +17,8 @@
 }
 
 .fa-solid.fa-xmark.fa-2xl {
+  text-decoration: none;
+  color: #000000;
   width: 24px;
   height: 24px;
   display: flex;
@@ -57,7 +57,7 @@
   position: relative;
 }
 
-.modal-gallery i {
+.modal-gallery a {
   position: absolute;
   top: 6px;
   right: 4.85px;
@@ -72,6 +72,7 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
+  text-decoration: none;
 }
 
 hr {
@@ -79,16 +80,100 @@ hr {
   margin-top: 67.3px;
 }
 
-.ajouter-photo {
+.btn-modal {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+
+.btn-ajouterPhoto {
   font-size: 14px;
   font-family: "Syne";
-  font-weight: bold;
+  color: #ffffff;
+  background-color: #1d6154;
   width: 237px;
   height: 36px;
   border-radius: 60px;
+  border: none;
+}
+
+/* Modal load */
+
+#modal-ajoutPhoto {
+  flex-direction: column;
+}
+
+.modal-ajout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.load {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 420px;
+  height: 169px;
+  background-color: rgba(232, 241, 246, 1);
+}
+
+.fa-regular.fa-image {
+  color: #b9c5cc;
+  font-size: 76px;
+  margin-top: 13px;
+}
+
+.load label {
+  background-color: #b9c5cc;
+  width: 41%;
+  height: 36px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #306685;
+  font-size: 14px;
+  font-family: "Work Sans";
+  margin-top: 6px;
+}
+
+.load p {
+  margin-top: 7px;
+  margin-bottom: 19px;
+}
+
+.load-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.load-form label {
+  font-size: 14px;
+  font-family: "Work Sans";
+}
+
+.load-form input {
+  width: 100%;
+  height: 51px;
+  box-shadow: 0px 4px 14px 0px #0000001a;
+  border: none;
+  margin-top: 10px;
+}
+
+.form-categorie {
+  margin-top: 21px;
+}
+
+.btn-valider {
+  background-color: #a7a7a7;
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  border: none;
+  font-size: 14px;
+  font-family: "Syne";
   color: #ffffff;
-  background-color: #1d6154;
-  margin-top: 38px;
-  margin-bottom: 51px;
-  margin-left: 205px;
 }

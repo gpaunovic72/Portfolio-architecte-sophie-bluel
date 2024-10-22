@@ -1,7 +1,7 @@
 const reponse = await fetch("http://localhost:5678/api/works");
 const projets = await reponse.json();
 
-export function genererProjets(projets) {
+function genererProjets(projets) {
   for (let i = 0; i < projets.length; i++) {
     const projet = projets[i];
 
