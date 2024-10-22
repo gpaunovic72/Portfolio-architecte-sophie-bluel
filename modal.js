@@ -1,3 +1,4 @@
+//Fonction pour choisir la modal
 function choixModal(nomModal) {
   const modalAjoutPhoto = document.getElementById("modal-ajoutPhoto");
   const modalGaleriePhoto = document.getElementById("modal-galeriePhoto");
@@ -101,3 +102,48 @@ function genererProjetsModal(projets) {
     projetElementModal.appendChild(baliseI);
   }
 }
+
+// Fonction supprimer projets dans la modal Galerie Photo
+function deleteProjetGaleriPhoto() {
+  const boutonDelete = document.querySelectorAll(
+    ".fa-solid.fa-trash-can.fa-2xs"
+  );
+
+  for (let i = 0; i < boutonDelete.length; i++) {
+    boutonDelete[i].addEventListener("click", async (Event) => {
+      Event.preventDefault();
+
+      // Récupération du token
+      let token = window.localStorage.getItem("authToken");
+
+      // Récupération balise parent
+      const figureElement = boutonDelete[i].parentElement;
+
+      // Récupérer l'ID du projet à partir de l'attribut data-id
+      const projetID = figureElement.getAttribute("data-id");
+
+      if (token) {
+        try {
+          // Appel de la fonction fetch avec toutes les informations nécessaires
+          const reponse = await fetch(
+            `http://localhost:5678/api/works/${projetID}`,
+            {
+              method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` },
+              accept: "*/*",
+            }
+          );
+
+          if (reponse.ok) {
+            figureElement.remove();
+          } else {
+            alert("Une erreur est survenu ");
+          }
+        } catch {
+          alert("Je n'ai pas réussi");
+        }
+      }
+    });
+  }
+}
+deleteProjetGaleriPhoto();

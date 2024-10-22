@@ -78,7 +78,7 @@ function homePageEdit() {
   const boutonModifier = document.querySelector(".btn-modifier");
   const menuCategorie = document.querySelector(".menu-categorie");
 
-  const loginToken = !!token;
+  const loginToken = token;
 
   // Basculer l'affichage en fonction de la présence du token
   if (boutonLogin) boutonLogin.style.display = loginToken ? "none" : "flex";
