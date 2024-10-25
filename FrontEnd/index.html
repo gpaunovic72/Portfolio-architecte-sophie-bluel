@@ -38,7 +38,7 @@
         <nav class="nav-header">
           <ul>
             <li class="projets"><a href="./index.html">projets</a></li>
-            <li class="constact">contact</li>
+            <li class="contact">contact</li>
             <li class="login"><a href="./login.html">login</a></li>
             <li class="logout" style="display: none">
               <a href="./login.html">logout</a>
@@ -125,11 +125,11 @@
           <a href="#" class="fa-solid fa-xmark fa-2xl"></a>
           <h2 id="title-modal">
             Galerie photo </i>
+            
           </h2>
         </div>
         <div class="modal-gallery">
           <!-- Récupération des travaux via l'API -->
-          
         </div>
         <hr>
         <div class="btn-modal">
@@ -142,21 +142,23 @@
           <h2 id="title-modal"> Ajout photo</h2>
         </div>
         <div class="modal-ajout">
-          <form action="#" method="post">
+          <form  method="post" id="form-ajoutPhoto" class="form-ajoutPhoto" enctype="multipart/form-data" novalidate>
             <div class="load">
-              <i class="fa-regular fa-image"></i>
-              <label type="file" name="file" id="file">+ Ajouter photo</label>
-              <p>jpg, png : 4mo max</p>
+              <i class="fa-regular fa-image" id="image-icon" alt="image-icon"></i>
+              <label for="fileInput" class="btn-upload">+ Ajouter photo</label>
+              <input type="file" id="fileInput">
+              <p class="form-p">jpg, png : 4mo max</p>
             </div>
             <div class="load-form">
               <label for="title">Titre</label>
-              <input type="text" name="title" id="title">
+              <input type="text" name="title" id="title" class="ajout-photoTitle" required>
               <label for="categorie" class="form-categorie">Catégorie</label>
-              <input type="text" name="categorie" id="categorie">
+              <select type="text" name="categorie" id="categorie" required></select>
             </div>
+            <div id="output"></div>
             <hr>
             <div class="btn-modal">
-              <button class="btn-valider">Valider</button>
+              <input type="submit" value="Valider" class="btn-valider">
             </div>
           </form>
         </div>  

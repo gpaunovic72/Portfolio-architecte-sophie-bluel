@@ -125,7 +125,13 @@ hr {
   margin-top: 13px;
 }
 
-.load label {
+.load img {
+  width: 129px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.load .btn-upload {
   background-color: #b9c5cc;
   width: 41%;
   height: 36px;
@@ -136,9 +142,13 @@ hr {
   color: #306685;
   font-size: 14px;
   font-family: "Work Sans";
-  margin-top: 6px;
+  margin: 6px 0px 0px 0px;
+  border: none;
 }
-
+.load input[type="file"] {
+  opacity: 0%;
+  position: absolute;
+}
 .load p {
   margin-top: 7px;
   margin-bottom: 19px;
@@ -155,7 +165,8 @@ hr {
   font-family: "Work Sans";
 }
 
-.load-form input {
+.load-form input,
+select {
   width: 100%;
   height: 51px;
   box-shadow: 0px 4px 14px 0px #0000001a;
@@ -167,10 +178,11 @@ hr {
   margin-top: 21px;
 }
 
-.btn-valider {
+.btn-modal .btn-valider {
   background-color: #a7a7a7;
   width: 237px;
   height: 36px;
+  margin: 0;
   border-radius: 60px;
   border: none;
   font-size: 14px;

@@ -88,7 +88,6 @@ function homePageEdit() {
     boutonModifier.style.display = loginToken ? "flex" : "none";
   if (menuCategorie) menuCategorie.style.display = loginToken ? "none" : "flex";
 }
-homePageEdit();
 
 function logout() {
   const boutonLogout = document.querySelector(".logout");
