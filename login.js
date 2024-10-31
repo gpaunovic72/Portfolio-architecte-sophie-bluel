@@ -37,7 +37,7 @@ function validerFomulaireLogin() {
       // Redirection vers la page d'accueil
       window.location.href = "./index.html";
     } else {
-      errorMessage.textContent = `Erreur ${reponse.status} : ${data.message}`;
+      errorMessage.textContent = `Erreur dans l'identifiant ou le mot de passe`;
     }
   });
 }

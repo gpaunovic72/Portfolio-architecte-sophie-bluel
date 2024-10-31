@@ -1,24 +1,59 @@
-function validerFormulaireAjout() {
-  const formAjouterPhoto = document.querySelector(".form-ajoutPhoto");
-  const output = document.querySelector("#output");
-  previewImg();
+function errorMessage(msg, type) {
+  const output = document.getElementById("output");
+  const span = document.createElement("span");
+  output.appendChild(span);
+  span.innerText = msg;
+  span.classList.add(type);
+  setTimeout(() => {
+    span.remove();
+  }, 2000);
+}
 
-  formAjouterPhoto.addEventListener("submit", async (event) => {
+// Variable globale pour stocker le fichier sélectionné
+let selectedFile = null;
+function ajoutphoto() {
+  const formAjoutphoto = document.getElementById("form-ajoutPhoto");
+
+  formAjoutphoto.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const title = document.getElementById("title");
+    const formData = new FormData(formAjoutphoto);
+
+    const values = [...formData.values()];
+
+    if (values.includes("")) {
+      errorMessage("Veuillez remplir tout les champs", "error");
+      return;
+    }
     // Récupération du token
     let token = window.localStorage.getItem("authToken");
 
-    // Crée un objet FormData pour capturer les données du formulaire
-    const formData = new FormData(formAjouterPhoto);
+    const reponse = await fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+    if (reponse.ok) {
+      errorMessage("Projet ajouté avec succès !", "success");
+      setTimeout(() => {
+        // Redirection vers la page d'accueil
+        window.location.href = "./index.html";
+      }, 2000);
+    } else {
+      errorMessage(`Erreur : ${reponse.status} : ${reponse.message}`, "error");
+    }
   });
 }
-validerFormulaireAjout();
+previewImg();
+ajoutphoto();
 
-// Fonction pour charger les catégories venant de l'API aujout photo
+// Fonction pour charger les catégories venant de l'API ajout photo
 async function chargerCategorie() {
-  const categorieSelect = document.getElementById("categorie");
+  const categorieSelect = document.getElementById("category");
+
   const reponse = await fetch("http://localhost:5678/api/categories");
   const datas = await reponse.json();
 
@@ -27,8 +62,8 @@ async function chargerCategorie() {
 
   // Charger les catégories au click sur le select
   categorieSelect.addEventListener("focus", () => {
+    //récupérer les catégorie
     if (!categoriesChargees) {
-      //récupérer les catégorie
       for (let i = 0; i < datas.length; i++) {
         const data = datas[i];
 
@@ -38,23 +73,25 @@ async function chargerCategorie() {
 
         categorieSelect.appendChild(option);
       }
-      categoriesChargees = true;
     }
+    // Les catégories sont chargé
+    categoriesChargees = true;
   });
 }
+
 // Fonction pour prévisualisation d'image
 function previewImg() {
   const uploadButton = document.querySelector(".btn-upload");
   const imgIcon = document.getElementById("image-icon");
   const formP = document.querySelector(".form-p");
   const load = document.querySelector(".load");
-  const fileInput = document.getElementById("fileInput");
+  const fileInput = document.getElementById("image");
 
   fileInput.addEventListener("change", (event) => {
     // Récupèration du premier fichier sélectionné par l'utilisateur
-    const file = event.target.files[0];
+    selectedFile = event.target.files[0];
 
-    if (file) {
+    if (selectedFile) {
       const baliseImage = document.createElement("img");
       // Création d'un nouvel objet FileReader pour lire le fichier
       const reader = new FileReader();
@@ -62,60 +99,19 @@ function previewImg() {
       // Définir ce qui se passe lorsque le fichier est chargé
       reader.onload = function (e) {
         baliseImage.src = e.target.result; // Définir la source de l'image à l'URL du fichier
-        load.innerHTML = ""; // Effacer le contenu précédent
         load.appendChild(baliseImage); // Ajouter l'image à la div load
 
         // Masquer les éléments non nécessaires
         imgIcon.style.display = "none";
         uploadButton.style.display = "none";
         formP.style.display = "none";
-        fileInput.style.display = "none";
       };
 
       // Lire le fichier en tant qu'URL de données pour affichage
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(selectedFile);
     }
   });
 }
-
-// Fonction supprimer projets dans la modal Galerie Photo
-function deleteProjetGaleriPhoto() {
-  const boutonDelete = document.querySelectorAll(
-    ".fa-solid.fa-trash-can.fa-2xs"
-  );
-
-  for (let i = 0; i < boutonDelete.length; i++) {
-    boutonDelete[i].addEventListener("click", async () => {
-      // Récupération du token
-      let token = window.localStorage.getItem("authToken");
-
-      // Récupération balise parent
-      const figureElement = boutonDelete[i].parentElement;
-
-      // Récupérer l'ID du projet à partir de l'attribut data-id
-      const projetID = figureElement.getAttribute("data-id");
-
-      if (token) {
-        // Appel de la fonction fetch avec toutes les informations nécessaires
-        const reponse = await fetch(
-          `http://localhost:5678/api/works/${projetID}`,
-          {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` },
-            accept: "*/*",
-          }
-        );
-
-        if (reponse.ok) {
-          figureElement.remove();
-        } else {
-          alert("Une erreur est survenu ");
-        }
-      }
-    });
-  }
-}
-deleteProjetGaleriPhoto();
 
 //Fonction pour choisir la modal
 function choixModal(nomModal) {
@@ -136,7 +132,8 @@ function choixModal(nomModal) {
 
 // Affichage de la modal ajout photo après le click
 const boutonAjoutPhoto = document.querySelector(".btn-ajouterPhoto");
-boutonAjoutPhoto.addEventListener("click", () => {
+boutonAjoutPhoto.addEventListener("click", (event) => {
+  event.preventDefault();
   choixModal("ajout");
 });
 
@@ -152,7 +149,8 @@ function ouvrirModal() {
 }
 // Ouvrir la modal avec le click sur le btn Modifier
 const boutonModier = document.querySelector(".btn-modifier");
-boutonModier.addEventListener("click", async () => {
+boutonModier.addEventListener("click", async (event) => {
+  event.preventDefault();
   ouvrirModal(projets);
   chargerCategorie();
 });
@@ -218,3 +216,45 @@ function genererProjetsModal(projets) {
     projetElementModal.appendChild(baliseI);
   }
 }
+// Fonction supprimer projets dans la modal Galerie Photo
+function deleteProjetGaleriPhoto() {
+  const boutonDelete = document.querySelectorAll(
+    ".fa-solid.fa-trash-can.fa-2xs"
+  );
+  for (let i = 0; i < boutonDelete.length; i++) {
+    boutonDelete[i].addEventListener("click", async (Event) => {
+      Event.preventDefault();
+      // Récupération du token
+      let token = window.localStorage.getItem("authToken");
+      // Récupération balise parent
+      const figureElement = boutonDelete[i].parentElement;
+      // Récupérer l'ID du projet à partir de l'attribut data-id
+      const projetID = figureElement.getAttribute("data-id");
+      if (token) {
+        try {
+          // Appel de la fonction fetch avec toutes les informations nécessaires
+          const reponse = await fetch(
+            `http://localhost:5678/api/works/${projetID}`,
+            {
+              method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` },
+              accept: "*/*",
+            }
+          );
+          if (reponse.ok) {
+            figureElement.remove();
+            setTimeout(() => {
+              // Redirection vers la page d'accueil
+              window.location.href = "./index.html";
+            }, 500);
+          } else {
+            alert("Une erreur est survenu ");
+          }
+        } catch {
+          alert("Je n'ai pas réussi");
+        }
+      }
+    });
+  }
+}
+deleteProjetGaleriPhoto();

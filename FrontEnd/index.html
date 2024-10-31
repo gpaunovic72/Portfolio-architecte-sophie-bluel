@@ -142,18 +142,18 @@
           <h2 id="title-modal"> Ajout photo</h2>
         </div>
         <div class="modal-ajout">
-          <form  method="post" id="form-ajoutPhoto" class="form-ajoutPhoto" enctype="multipart/form-data" novalidate>
+          <form  method="post" id="form-ajoutPhoto" class="form-ajoutPhoto" name="form-ajoutPhoto" enctype="multipart/form-data" novalidate>
             <div class="load">
               <i class="fa-regular fa-image" id="image-icon" alt="image-icon"></i>
-              <label for="fileInput" class="btn-upload">+ Ajouter photo</label>
-              <input type="file" id="fileInput">
+              <label for="image" class="btn-upload">+ Ajouter photo</label>
+              <input type="file" name="image" id="image">
               <p class="form-p">jpg, png : 4mo max</p>
             </div>
             <div class="load-form">
               <label for="title">Titre</label>
               <input type="text" name="title" id="title" class="ajout-photoTitle" required>
-              <label for="categorie" class="form-categorie">Catégorie</label>
-              <select type="text" name="categorie" id="categorie" required></select>
+              <label for="category" class="form-categorie">Catégorie</label>
+              <select type="text" name="category" id="category" required></select>
             </div>
             <div id="output"></div>
             <hr>

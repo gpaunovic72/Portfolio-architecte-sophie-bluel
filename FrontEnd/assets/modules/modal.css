@@ -189,3 +189,21 @@ select {
   font-family: "Syne";
   color: #ffffff;
 }
+
+.valid {
+  background-color: #1d6154;
+}
+
+#output {
+  text-align: center;
+}
+
+.success {
+  color: #ffffff;
+  background-color: darkseagreen;
+}
+
+.error {
+  color: #ffffff;
+  background-color: rgb(236, 88, 62);
+}
