@@ -1,3 +1,4 @@
+// Fonction pour envoyer les messages d'erreur
 function errorMessage(msg, type) {
   const output = document.getElementById("output");
   const span = document.createElement("span");
@@ -9,17 +10,20 @@ function errorMessage(msg, type) {
   }, 2000);
 }
 
-// Variable globale pour stocker le fichier sélectionné
-let selectedFile = null;
+// Fonction pour ajouter des photos
 function ajoutphoto() {
   const formAjoutphoto = document.getElementById("form-ajoutPhoto");
+  const formData = new FormData(formAjoutphoto);
+  const values = [...formData.values()];
+
+  formAjoutphoto.addEventListener("change", (e) => {
+    e.preventDefault();
+    const boutonValider = document.querySelector(".btn-valider");
+    boutonValider.style.background = "#1d6154";
+  });
 
   formAjoutphoto.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    const formData = new FormData(formAjoutphoto);
-
-    const values = [...formData.values()];
 
     if (values.includes("")) {
       errorMessage("Veuillez remplir tout les champs", "error");
@@ -41,7 +45,7 @@ function ajoutphoto() {
       setTimeout(() => {
         // Redirection vers la page d'accueil
         window.location.href = "./index.html";
-      }, 2000);
+      }, 1000);
     } else {
       errorMessage(`Erreur : ${reponse.status} : ${reponse.message}`, "error");
     }
@@ -64,6 +68,9 @@ async function chargerCategorie() {
   categorieSelect.addEventListener("focus", () => {
     //récupérer les catégorie
     if (!categoriesChargees) {
+      // Vider les options pour éviter les doublons
+      categorieSelect.innerHTML = "";
+
       for (let i = 0; i < datas.length; i++) {
         const data = datas[i];
 
@@ -77,7 +84,34 @@ async function chargerCategorie() {
     // Les catégories sont chargé
     categoriesChargees = true;
   });
+  categorieSelect.innerHTML = "";
 }
+
+// Fonction pour reset la prévisualisation de l'image
+function resetPreviewImg() {
+  const uploadButton = document.querySelector(".btn-upload");
+  const imgIcon = document.getElementById("image-icon");
+  const formP = document.querySelector(".form-p");
+  const load = document.querySelector(".load");
+  const fileInput = document.getElementById("image");
+
+  // Réinitialiser le champ file input
+  fileInput.value = "";
+
+  // Supprimer uniquement l'image de prévisualisation
+  const previewImage = load.querySelector(".preview-image");
+  if (previewImage) {
+    load.removeChild(previewImage);
+  }
+
+  // Réafficher les éléments cachés
+  imgIcon.style.display = "flex";
+  uploadButton.style.display = "flex";
+  formP.style.display = "flex";
+}
+
+// Variable globale pour stocker le fichier sélectionné
+let selectedFile = null;
 
 // Fonction pour prévisualisation d'image
 function previewImg() {
@@ -93,13 +127,15 @@ function previewImg() {
 
     if (selectedFile) {
       const baliseImage = document.createElement("img");
+      baliseImage.classList.add("preview-image"); // Ajouter une classe pour la prévisualisation
+
       // Création d'un nouvel objet FileReader pour lire le fichier
       const reader = new FileReader();
 
       // Définir ce qui se passe lorsque le fichier est chargé
       reader.onload = function (e) {
         baliseImage.src = e.target.result; // Définir la source de l'image à l'URL du fichier
-        load.appendChild(baliseImage); // Ajouter l'image à la div load
+        load.appendChild(baliseImage); // Ajouter l'image
 
         // Masquer les éléments non nécessaires
         imgIcon.style.display = "none";
@@ -149,14 +185,18 @@ function ouvrirModal() {
 }
 // Ouvrir la modal avec le click sur le btn Modifier
 const boutonModier = document.querySelector(".btn-modifier");
-boutonModier.addEventListener("click", async (event) => {
-  event.preventDefault();
+boutonModier.addEventListener("click", () => {
   ouvrirModal(projets);
   chargerCategorie();
 });
 
 //Fonction fermer la modal
 function fermerLaModal() {
+  const formAjoutphoto = document.getElementById("form-ajoutPhoto").reset();
+  const boutonValider = document.querySelector(".btn-valider");
+  boutonValider.style.background = "";
+  resetPreviewImg();
+
   modal.style.display = "none";
   // Ajouter un attribut aria-hidden à false pour l'accessibilité
   modal.setAttribute("aria-hidden", "true");
