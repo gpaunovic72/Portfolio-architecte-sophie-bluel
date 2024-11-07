@@ -1,6 +1,10 @@
 // Fonction pour envoyer les messages d'erreur
 function errorMessage(msg, type) {
   const output = document.getElementById("output");
+
+  // Vérification s'il y a déjà un message d'erreur affiché
+  if (output.querySelector("span")) return;
+
   const span = document.createElement("span");
   output.appendChild(span);
   span.innerText = msg;
@@ -11,19 +15,19 @@ function errorMessage(msg, type) {
 }
 
 // Fonction pour ajouter des photos
-function ajoutphoto() {
+function ajoutprojet() {
   const formAjoutphoto = document.getElementById("form-ajoutPhoto");
-  const formData = new FormData(formAjoutphoto);
-  const values = [...formData.values()];
 
-  formAjoutphoto.addEventListener("change", (e) => {
-    e.preventDefault();
+  formAjoutphoto.addEventListener("change", () => {
     const boutonValider = document.querySelector(".btn-valider");
     boutonValider.style.background = "#1d6154";
   });
 
   formAjoutphoto.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    const formData = new FormData(formAjoutphoto);
+    const values = [...formData.values()];
 
     if (values.includes("")) {
       errorMessage("Veuillez remplir tout les champs", "error");
@@ -52,7 +56,7 @@ function ajoutphoto() {
   });
 }
 previewImg();
-ajoutphoto();
+ajoutprojet();
 
 // Fonction pour charger les catégories venant de l'API ajout photo
 async function chargerCategorie() {
@@ -185,7 +189,8 @@ function ouvrirModal() {
 }
 // Ouvrir la modal avec le click sur le btn Modifier
 const boutonModier = document.querySelector(".btn-modifier");
-boutonModier.addEventListener("click", () => {
+boutonModier.addEventListener("click", (event) => {
+  event.preventDefault();
   ouvrirModal(projets);
   chargerCategorie();
 });
@@ -234,15 +239,13 @@ const projets = await reponse.json();
 genererProjetsModal(projets);
 
 function genererProjetsModal(projets) {
-  for (let i = 0; i < projets.length; i++) {
-    const projet = projets[i];
-
+  for (const projet of projets) {
     // Récupération de l'élément du DOM pour accueillir les projets
     const modalGallery = document.querySelector(".modal-gallery");
 
     // Création d’une balise dédiée à un projet
     const projetElementModal = document.createElement("figure");
-    projetElementModal.dataset.id = projets[i].id;
+    projetElementModal.dataset.id = projet.id;
 
     // Création des balises
     const imageElement = document.createElement("img");
@@ -261,13 +264,13 @@ function deleteProjetGaleriPhoto() {
   const boutonDelete = document.querySelectorAll(
     ".fa-solid.fa-trash-can.fa-2xs"
   );
-  for (let i = 0; i < boutonDelete.length; i++) {
-    boutonDelete[i].addEventListener("click", async (Event) => {
-      Event.preventDefault();
+  for (const bouton of boutonDelete) {
+    bouton.addEventListener("click", async (event) => {
+      event.preventDefault();
       // Récupération du token
       let token = window.localStorage.getItem("authToken");
       // Récupération balise parent
-      const figureElement = boutonDelete[i].parentElement;
+      const figureElement = bouton.parentElement;
       // Récupérer l'ID du projet à partir de l'attribut data-id
       const projetID = figureElement.getAttribute("data-id");
       if (token) {

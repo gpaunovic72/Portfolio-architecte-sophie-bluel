@@ -1,13 +1,12 @@
 function validerFomulaireLogin() {
   const formulaireLogin = document.querySelector(".form-login");
-  formulaireLogin.addEventListener("submit", async (Event) => {
-    Event.preventDefault();
+  formulaireLogin.addEventListener("submit", async (event) => {
+    event.preventDefault();
     // Création de l’objet du formulaire login.
     const login = {
-      email: Event.target.querySelector("[name=email]").value,
-      password: Event.target.querySelector("[name=password]").value,
+      email: event.target.querySelector("[name=email]").value,
+      password: event.target.querySelector("[name=password]").value,
     };
-    const errorMessage = document.getElementById("errorMessage");
 
     // Création de la charge utile au format JSON
     const chargeUtile = JSON.stringify(login);
@@ -16,7 +15,8 @@ function validerFomulaireLogin() {
     try {
       validerEmail(login.email);
     } catch (error) {
-      errorMessage.textContent = error.message;
+      afficherMessageErreur(error);
+      document.getElementById("password").value = "";
       return;
     }
 
@@ -37,7 +37,8 @@ function validerFomulaireLogin() {
       // Redirection vers la page d'accueil
       window.location.href = "./index.html";
     } else {
-      errorMessage.textContent = `Erreur dans l'identifiant ou le mot de passe`;
+      afficherMessageErreur(`Erreur dans l'identifiant ou le mot de passe`);
+      document.getElementById("password").value = "";
     }
   });
 }
@@ -49,4 +50,13 @@ function validerEmail(email) {
   if (!emailRegExp.test(email)) {
     throw new Error("L'email n'est pas valide.");
   }
+}
+
+// Fonction pour afficher un message d'erreur
+function afficherMessageErreur(message) {
+  const errorMessage = document.getElementById("errorMessage");
+  errorMessage.textContent = message;
+  setTimeout(() => {
+    errorMessage.textContent = "";
+  }, 1500);
 }

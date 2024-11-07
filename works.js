@@ -2,15 +2,16 @@ const reponse = await fetch("http://localhost:5678/api/works");
 const projets = await reponse.json();
 
 function genererProjets(projets) {
-  for (let i = 0; i < projets.length; i++) {
-    const projet = projets[i];
+  //for (let i = 0; i < projets.length; i++) {
+  //const projet = projets[i];
 
+  for (const projet of projets) {
     // Récupération de l'élément du DOM pour accueillir les projets
     const sectionGallery = document.querySelector(".gallery");
 
     // Création d’une balise dédiée à un projet
     const projetElement = document.createElement("figure");
-    projetElement.dataset.id = projets[i].id;
+    projetElement.dataset.id = projet.id;
 
     // Création des balises
 
