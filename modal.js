@@ -70,14 +70,12 @@ async function chargerCategorie() {
 
   // Charger les catégories au click sur le select
   categorieSelect.addEventListener("focus", () => {
+    const boutonValider = document.querySelector(".btn-valider");
+    boutonValider.style.background = "#1d6154";
+
     //récupérer les catégorie
     if (!categoriesChargees) {
-      // Vider les options pour éviter les doublons
-      categorieSelect.innerHTML = "";
-
-      for (let i = 0; i < datas.length; i++) {
-        const data = datas[i];
-
+      for (const data of datas) {
         const option = document.createElement("option");
         option.value = data.id;
         option.innerText = data.name;
